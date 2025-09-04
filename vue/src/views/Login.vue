@@ -72,7 +72,7 @@ const login=() =>{
                     localStorage.setItem('classic_immortal-user',JSON.stringify(res.data))
                     ElMessage.success('登陆成功')
                    setTimeout(() => {
-                    location.href = '/home';  // ✅ 先用这种方式测试，确保能跳
+                    location.href = '/manager';  // ✅ 先用这种方式测试，确保能跳
                 }, 500)
                 }else{
                     ElMessage.error(res.msg)
