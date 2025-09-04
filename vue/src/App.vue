@@ -5,7 +5,7 @@
 <template>
   <div>
 
- 你们好
+ 
   </div>
 
   <RouterView />
