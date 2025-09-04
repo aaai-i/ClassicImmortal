@@ -6,7 +6,9 @@ const router = createRouter({
   routes: [
     { path: '/',  redirect:'/login' },
     {path: '/manager',  name: 'Manager',  component: () => import('../views/Manager.vue'),children:[
-         {path: '/home', name: 'home',meta:{title:'主页'}, component: () => import('../views/Home.vue'), },
+         {path: 'home', name: 'home',meta:{title:'主页'}, component: () => import('../views/Home.vue'), },
+         {path: 'Employee', name: 'employee',meta:{title:'主页'}, component: () => import('../views/Employee.vue'), },
+         
     ] },
     {path:'/login',name:'Login',meta:{title:'登录系统'},component:()=>import('../views/Login.vue')}
   ],
