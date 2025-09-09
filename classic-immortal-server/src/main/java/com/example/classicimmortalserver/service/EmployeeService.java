@@ -1,5 +1,6 @@
 package com.example.classicimmortalserver.service;
 
+import cn.hutool.core.util.StrUtil;
 import com.example.classicimmortalserver.entity.Account;
 import com.example.classicimmortalserver.entity.Admin;
 import com.example.classicimmortalserver.entity.Employee;
@@ -46,6 +47,35 @@ public class EmployeeService {
         return  PageInfo.of(list);
 
     }
+    /**
+     * 新增员工
+     * @param employee
+     * @return
+     */
+    public void add(Employee employee) {
+        String username=employee.getUsername();
+      Employee dbEmployee=employeeMapper.selectByUsername(username);
+      if(dbEmployee!=null){
+          throw new CustomException("500","账号已存在，请更换别的账号");
+      }
+      Employee dbEmployee1=employeeMapper.selectByUsername(username);
+    if (dbEmployee1!=null){
+        throw new CustomException("500","工号已存在，请注意");
+    }
+    if (StrUtil.isBlank(employee.getPassword())){
+        employee.setPassword("123");
+
+    }
+    if (StrUtil.isBlank(employee.getName())){
+        employee.setName(employee.getUsername());
+
+    }
+    employee.setRole("EMP");
+    employeeMapper.insert(employee);
+
+
+    }
+
 }
 
 

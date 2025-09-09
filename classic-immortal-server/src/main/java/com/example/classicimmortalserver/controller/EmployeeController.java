@@ -8,10 +8,7 @@ import com.example.classicimmortalserver.service.AdminService;
 import com.example.classicimmortalserver.service.EmployeeService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employee")
@@ -30,6 +27,19 @@ public class EmployeeController {
          return  Result.success(pageInfo);
     }
 
+
+    /**
+     * 新增员工
+     * @param employee
+     * @return
+     */
+    @PostMapping("/add")
+    public Result add(@RequestBody Employee employee){
+    employeeService.add(employee);
+    return Result.success();
+
+
+    }
 
 }
 

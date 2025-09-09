@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.classicimmortalserver.mapper.EmployeeMapper">
 
+
     <select id="selectAll" resultType="com.example.classicimmortalserver.entity.Employee">
         SELECT * FROM  `classic_immortal`.employee
         <where>
@@ -12,6 +13,14 @@
 order by id desc
 
     </select>
+
+
+
+    <insert id="insert">
+insert into   `classic_immortal`.employee  (username,password,name,sex,no,age,description)
+values (#{username},#{password},#{name},#{sex},#{no,},#{age},#{description})
+
+    </insert>
 
 
 

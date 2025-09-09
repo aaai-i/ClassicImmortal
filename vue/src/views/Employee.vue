@@ -2,12 +2,12 @@
 <div>
 <div class="card" style="margin-bottom: 5px;">
     <el-input style="width: 240px; margin-right: 10px" v-model="data.name" placeholder="请输入名称查询" prefix-icon="Search"></el-input>
-<el-button type="primary"  >查询 </el-button>    
-<el-button type="warning" >重置</el-button>
+<el-button type="primary"  @click="load">查询 </el-button>    
+<el-button type="warning" @click="reset">重置</el-button>
 </div>
 
 <div class="card" style="margin-bottom: 5px">
-      <el-button type="primary" >新 增</el-button>
+      <el-button type="primary" @click="handleAdd">新 增</el-button>
       <el-button type="warning" >批量删除</el-button>
       <el-button type="info">导入</el-button>
       <el-button type="success">导出</el-button>
@@ -41,15 +41,52 @@
 
     />
 </div>
-
-
-
-
-
-
-
-
 </div>
+
+<div>
+      <el-dialog title="员工信息" v-model="data.formVisible" width="500" destroy-on-close>
+  <el-form ref="formRef" :rules="data.rules" :model="data.form" label-width="80px" style="padding-right: 40px; padding-top: 20px">
+    <el-form-item label="账号" prop="username">
+      <el-input  v-model="data.form.username" autocomplete="off" placeholder="请输入账号" />
+    </el-form-item>
+    <el-form-item label="名称" prop="name">
+      <el-input v-model="data.form.name"  autocomplete="off" placeholder="请输入名称" />
+    </el-form-item>
+    <el-form-item label="性别">
+      <el-radio-group v-model="data.form.sex">
+        <el-radio value="男" label="男"></el-radio>
+        <el-radio value="女" label="女"></el-radio>
+      </el-radio-group>
+    </el-form-item>
+    <el-form-item label="工号" prop="no">
+      <el-input v-model="data.form.no" autocomplete="off"  placeholder="请输入工号" />
+    </el-form-item>
+    <el-form-item label="年龄">
+      <el-input-number style="width: 180px" :min="18" v-model="data.form.age" autocomplete="off"  placeholder="请输入年龄" />
+    </el-form-item>
+    <el-form-item label="个人介绍">
+      <el-input :rows="3" type="textarea" v-model="data.form.description" autocomplete="off" placeholder="请输入个人介绍" />
+    </el-form-item>
+  </el-form>
+  <template #footer>
+    <div class="dialog-footer">
+      <el-button @click="data.formVisible = false">取 消</el-button>
+      <el-button type="primary" @click="save">保 存</el-button>
+    </div>
+  </template>
+</el-dialog>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -65,6 +102,7 @@
 
 <script setup>
 import request from "@/utils/request";
+import { ElMessage } from "element-plus";
 import { reactive,ref } from "vue";
 
 
@@ -73,15 +111,32 @@ const data=reactive({
     tableData:[],
     pageNum:1,
     pageSize:10,
-    total:0
+    total:0,
+    formVisible:false,
+    form:{},
+    ids:[],
+    rules:{
+username:[{
+    required:true,message:'请输入账号',trigger:'blur'
+}],
+name:[{
+    required:true,message:'请输入名称',trigger:'blur'
+}],
+no:[{
+    required:true,message:'请输入工号',trigger:'blur'
+}]
+    }
+    
 })
 
 
 const formRef=ref()
 
+
+
 const load=()=>{
     request.get('employee/selectPage',{
-        param:{
+        params:{
             pageNum:data.pageNum,
             pageSize:data.pageSize,
             name:data.name
@@ -94,11 +149,68 @@ const load=()=>{
 load()
 
 
+
 const handleSelectionChange = (rows) => {  // 返回所有选中的行对象数组
   // 从选中的行数组里面取出所有行的id组成一个新的数组
   data.ids = rows.map(row => row.id)
   console.log(data.ids)
 }
+
+const reset=()=>{
+    data.name=null
+    load()
+}
+
+const handleAdd=()=>{
+    data.formVisible=true
+    data.form={}
+}
+
+const add=()=>{
+    request.post('employee/add',data.form).then(res=>{
+        if(res.code==='200'){
+            data.formVisible=false
+            ElMessage.success('操作成功')
+            load()
+        }else{
+            ElMessage.error(res.msg)
+        }
+
+    })
+}
+
+
+
+//这里面是表单校验
+const save = () => { // 在一个保存方法里面做2个操作  一个是新增 一个是编辑
+  formRef.value.validate((valid)=>{
+    if(valid){
+data.form.id ? update() : add()
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>

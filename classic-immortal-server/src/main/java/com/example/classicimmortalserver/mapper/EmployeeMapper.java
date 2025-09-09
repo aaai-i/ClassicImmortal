@@ -8,12 +8,19 @@ import java.util.List;
 public interface EmployeeMapper {
 
 
-    @Select("select * from `employee` where  username=#{username} ")
+    @Select("select * from `classic_immortal`.employee where  username=#{username} ")
     Employee selectByUsername(String username);
 
 
 
     List<Employee> selectAll(Employee employee);
+
+
+    /**
+     * 增加
+     * @param employee
+     */
+    void insert(Employee employee);
 }
 
 

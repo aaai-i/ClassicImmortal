@@ -5,6 +5,7 @@
 <mapper namespace="com.example.classicimmortalserver.mapper.AdminMapper">
 
 
+
     <select id="selectAll" resultType="com.example.classicimmortalserver.entity.Admin">
 
 SELECT * FROM `classic_immortal`.admin
@@ -12,8 +13,37 @@ SELECT * FROM `classic_immortal`.admin
     <if test="name!=null"> name like concat('%',#{name},'%')</if>
 </where>
 order by id desc
-
-
-
     </select>
+
+
+
+    <insert id="insert">
+       insert into `classic_immortal`.admin (id, username, password, name)
+       values (#{id},#{username},#{password},#{name})
+
+    </insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

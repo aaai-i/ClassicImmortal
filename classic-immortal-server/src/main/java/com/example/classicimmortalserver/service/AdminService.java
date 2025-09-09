@@ -1,5 +1,6 @@
 package com.example.classicimmortalserver.service;
 
+import cn.hutool.core.util.StrUtil;
 import com.example.classicimmortalserver.entity.Account;
 import com.example.classicimmortalserver.entity.Admin;
 import com.example.classicimmortalserver.exception.CustomException;
@@ -19,6 +20,11 @@ public class AdminService {
     private AdminMapper adminMapper;
 
 
+    /**
+     * 登录功能
+     * @param account
+     * @return
+     */
     public Admin login(Account account) {
         String username=account.getUsername();
         Admin dbAdmin=adminMapper.selectByUsername(username);
@@ -33,6 +39,13 @@ public class AdminService {
 
     }
 
+    /**
+     * 分页功能
+     * @param admin
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     public PageInfo<Admin> selectPage(Admin admin, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Admin> list=adminMapper.selectAll(admin);
@@ -42,32 +55,24 @@ public class AdminService {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void add(Admin admin) {
+        String username=admin.getUsername();
+        Admin dbAdmin=adminMapper.selectByUsername(username);
+        if(dbAdmin!=null){
+            throw new CustomException("500","账号已存在");
+        }
+        Admin dbAdmin1=adminMapper.selectByUsername(username);
+        if (dbAdmin1!=null){
+            throw new CustomException("500","工号已存在");
+        }
+        if (StrUtil.isBlank(admin.getPassword())){
+admin.setPassword("123");
+        }
+        if (StrUtil.isBlank(admin.getName())) {
+            admin.setName(admin.getUsername());
+        }
+        admin.setRole("admin");
+        adminMapper.insert(admin);
+    }
 
 }
