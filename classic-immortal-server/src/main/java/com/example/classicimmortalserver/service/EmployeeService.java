@@ -1,18 +1,24 @@
 package com.example.classicimmortalserver.service;
 
 import com.example.classicimmortalserver.entity.Account;
+import com.example.classicimmortalserver.entity.Admin;
 import com.example.classicimmortalserver.entity.Employee;
 import com.example.classicimmortalserver.exception.CustomException;
 import com.example.classicimmortalserver.mapper.EmployeeMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.util.List;
 
 @Service
 public class EmployeeService {
 
  @Autowired
  private EmployeeMapper employeeMapper;
+
 
 
 
@@ -30,4 +36,34 @@ public class EmployeeService {
         }
         return dbEmployee;
     }
+
+
+
+
+    public  PageInfo<Employee> selectPage(Employee employee, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Employee> list=employeeMapper.selectAll(employee);
+        return  PageInfo.of(list);
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

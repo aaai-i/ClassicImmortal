@@ -3,7 +3,7 @@
         <div class="login-two">
             <div style="padding: 60px 100px;background-color:white; margin-left: 100px;border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.2)">
 <el-form ref="formRef" :rules="data.rules" :model="data.form" style="with:300px">
-<div style="margin-bottom: 30px; text-align: center; font-weight: bold; color:darkcyan; font-size: large;" >欢迎登录后台管理系统</div>
+<div style="margin-bottom: 30px; text-align: center; font-weight: bold; color:darkcyan; font-size: large;" >欢迎登录散修管理系统</div>
 
 <el-form-item prop="username">
 <el-input size="large" v-model="data.form.username" placeholder="请输入账号" prefix-icon="User"></el-input>

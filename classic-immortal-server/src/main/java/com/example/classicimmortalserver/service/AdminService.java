@@ -4,8 +4,13 @@ import com.example.classicimmortalserver.entity.Account;
 import com.example.classicimmortalserver.entity.Admin;
 import com.example.classicimmortalserver.exception.CustomException;
 import com.example.classicimmortalserver.mapper.AdminMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AdminService {
@@ -27,4 +32,42 @@ public class AdminService {
         return dbAdmin;
 
     }
+
+    public PageInfo<Admin> selectPage(Admin admin, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Admin> list=adminMapper.selectAll(admin);
+        return  PageInfo.of(list);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
