@@ -4,6 +4,7 @@ import com.example.classicimmortalserver.common.Result;
 import com.example.classicimmortalserver.entity.Admin;
 import com.example.classicimmortalserver.service.AdminService;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,7 +55,16 @@ public Result update(@RequestBody Admin admin){
         return Result.success();
 }
 
-
+    /**
+     * 删除散修
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/deleteById/{id}")
+public Result delete(@PathVariable Integer id){
+        adminService.deleteById(id);
+        return  Result.success();
+}
 
 
 

@@ -84,9 +84,38 @@ admin.setPassword("123");
      */
     public void update(Admin admin) {
         adminMapper.updateById(admin);
+    }
 
-
-
-
+    /**
+     * 删除散修
+     * @param id
+     */
+    public void deleteById(Integer id) {
+        adminMapper.deleteById(id);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

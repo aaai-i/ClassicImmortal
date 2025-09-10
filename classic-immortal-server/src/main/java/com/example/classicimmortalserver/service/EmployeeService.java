@@ -84,6 +84,14 @@ public class EmployeeService {
         employeeMapper.updateById(employee);
 
     }
+
+    /**
+     * 删除散修
+     * @param id
+     */
+    public void deleteById(Integer id) {
+        employeeMapper.deleteById(id);
+    }
 }
 
 

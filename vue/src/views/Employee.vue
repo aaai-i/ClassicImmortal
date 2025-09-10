@@ -208,6 +208,18 @@ const update=()=>{
   })
 }
 
+const del=(id)=>{
+  ElMessageBox.confirm('删除数据后无法恢复，您确定要删除散修吗？？？','删除确认',{type:'warning'}).then(()=>{
+    request.delete('/employee/deleteById/'+id).then(res=>{
+      if(res.code==='200'){
+        ElMessage.success('操作成功')
+        load()
+      }else{
+        ElMessage.error(res.msg)
+      }
+    })
+  }).catch()
+}
 
 
 

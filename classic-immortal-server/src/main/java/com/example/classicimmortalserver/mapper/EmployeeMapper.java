@@ -1,6 +1,7 @@
 package com.example.classicimmortalserver.mapper;
 
 import com.example.classicimmortalserver.entity.Employee;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -30,39 +31,8 @@ public interface EmployeeMapper {
 
     void updateById(Employee employee);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@Delete("SELECT * FROM `classic_immortal`.employee where  id=#{id}")
+    void deleteById(Integer id);
 }
 
 

@@ -7,6 +7,7 @@ import com.example.classicimmortalserver.entity.Employee;
 import com.example.classicimmortalserver.service.AdminService;
 import com.example.classicimmortalserver.service.EmployeeService;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,7 +60,16 @@ public Result update(@RequestBody Employee employee){
         return Result.success();
 }
 
-
+    /**
+     * 删除散修
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/deleteById/{id}")
+public Result delete(@PathVariable Integer id){
+        employeeService.deleteById(id);
+        return Result.success();
+}
 
 }
 
