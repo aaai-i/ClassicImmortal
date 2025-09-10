@@ -17,7 +17,13 @@ public class AdminController {
     private AdminService adminService;
 
 
-
+    /**
+     * 分页
+     * @param admin
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/selectPage")
     public Result selectAll(Admin admin,
                             @RequestParam(defaultValue = "1") Integer pageNum,
@@ -37,6 +43,16 @@ public class AdminController {
  return Result.success();
     }
 
+    /**
+     * 修改散修
+     * @param admin
+     * @return
+     */
+    @GetMapping("/update")
+public Result update(@RequestBody Admin admin){
+        adminService.update(admin);
+        return Result.success();
+}
 
 
 

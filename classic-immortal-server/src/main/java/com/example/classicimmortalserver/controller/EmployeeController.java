@@ -17,7 +17,15 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-@GetMapping("/selectPage")
+
+    /**
+     * 分页
+     * @param employee
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/selectPage")
     public Result selectPage(Employee employee,
                              @RequestParam(defaultValue = "1") Integer pageNum,
                              @RequestParam(defaultValue = "4") Integer pageSize){
@@ -37,9 +45,21 @@ public class EmployeeController {
     public Result add(@RequestBody Employee employee){
     employeeService.add(employee);
     return Result.success();
-
-
     }
+
+
+    /**
+     * 修改散修
+     * @param employee
+     * @return
+     */
+    @PutMapping("/update")
+public Result update(@RequestBody Employee employee){
+        employeeService.update(employee);
+        return Result.success();
+}
+
+
 
 }
 

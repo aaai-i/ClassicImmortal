@@ -76,6 +76,14 @@ public class EmployeeService {
 
     }
 
+    /**
+     * 修改散修
+     * @param employee
+     */
+    public void update(Employee employee) {
+        employeeMapper.updateById(employee);
+
+    }
 }
 
 

@@ -102,7 +102,7 @@
 
 <script setup>
 import request from "@/utils/request";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 import { reactive,ref } from "vue";
 
 
@@ -191,10 +191,22 @@ data.form.id ? update() : add()
 }
 
 
+const handleUpdate=(row)=>{
+  data.form=JSON.parse(JSON.stringify(row))
+  data.formVisible=true
+}
 
-
-
-
+const update=()=>{
+  request.put('/employee/update',data.form).then(res=>{
+    if(res.code==='200'){
+      data.formVisible=false
+      ElMessage.success('操作成功')
+      load()
+    }else{
+      ElMessage.error(res.msg)
+    }
+  })
+}
 
 
 

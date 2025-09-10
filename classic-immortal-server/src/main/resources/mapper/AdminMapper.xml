@@ -24,7 +24,14 @@ order by id desc
     </insert>
 
 
+    <update id="updateById" parameterType="com.example.classicimmortalserver.mapper.AdminMapper">
+        update `classic_immortal`.employee set username=#{username},password=#{password},role=#{role},
+                                               name=#{name},sex=#{sex},no=#{no},age=#{age},description=#{description}
 
+        where id=#{id}
+
+
+    </update>
 
 
 

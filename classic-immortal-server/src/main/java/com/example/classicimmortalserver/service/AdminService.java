@@ -54,7 +54,10 @@ public class AdminService {
 
     }
 
-
+    /**
+     * 增加散修
+     * @param admin
+     */
     public void add(Admin admin) {
         String username=admin.getUsername();
         Admin dbAdmin=adminMapper.selectByUsername(username);
@@ -75,4 +78,15 @@ admin.setPassword("123");
         adminMapper.insert(admin);
     }
 
+    /**
+     * 修改散修
+     * @param admin
+     */
+    public void update(Admin admin) {
+        adminMapper.updateById(admin);
+
+
+
+
+    }
 }

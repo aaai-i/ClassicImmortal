@@ -13,4 +13,6 @@ public interface AdminMapper {
     List<Admin> selectAll(Admin admin);
 
     void insert(Admin admin);
+
+    void updateById(Admin admin);
 }

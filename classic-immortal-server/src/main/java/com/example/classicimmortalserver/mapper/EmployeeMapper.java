@@ -21,6 +21,48 @@ public interface EmployeeMapper {
      * @param employee
      */
     void insert(Employee employee);
+
+
+    /**
+     * 修改散修
+     * @param employee
+     */
+
+    void updateById(Employee employee);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
