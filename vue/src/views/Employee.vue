@@ -8,14 +8,16 @@
 
 <div class="card" style="margin-bottom: 5px">
       <el-button type="primary" @click="handleAdd">新 增</el-button>
-      <el-button type="warning" >批量删除</el-button>
+      <el-button type="warning" @click="delBatch">批量删除</el-button>
       <el-button type="info">导入</el-button>
       <el-button type="success">导出</el-button>
     </div>
 
 <div class="card" style="margin-bottom: 5px;">
-    <el-table :data="data.tableData" strip @selection-change="handleSelectionChange">
+    <el-table :data="data.tableData" stripe  @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55" />
     <el-table-column label="账号" prop="username" />
+    <el-table-column label="名称" prop="name" />
     <el-table-column label="性别" prop="sex"/>
     <el-table-column label="工号" prop="no" />
     <el-table-column label="年龄" prop="age" />
@@ -78,22 +80,6 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 
@@ -150,11 +136,7 @@ load()
 
 
 
-const handleSelectionChange = (rows) => {  // 返回所有选中的行对象数组
-  // 从选中的行数组里面取出所有行的id组成一个新的数组
-  data.ids = rows.map(row => row.id)
-  console.log(data.ids)
-}
+
 
 const reset=()=>{
     data.name=null
@@ -222,6 +204,28 @@ const del=(id)=>{
 }
 
 
+const handleSelectionChange = (rows) => {  // 返回所有选中的行对象数组
+  // 从选中的行数组里面取出所有行的id组成一个新的数组
+  data.ids = rows.map(row => row.id)
+  console.log(data.ids)
+}
+
+const delBatch=()=>{
+  if(data.ids.length===0){
+    ElMessage.warning('请选择数据')
+    return
+  }
+  ElMessageBox.confirm('批量删除散修后数据无法恢复,您确定删除吗','删除确认',{type:'warning'}).then(()=>{
+    request.delete('/employee/deleteBatch',{data:data.ids}).then(res=>{
+      if(res.code==='200'){
+        ElMessage.success('操作成功')
+        load()
+      }else{
+        ElMessage.error(res.msg)
+      }
+    })
+  }).catch()
+}
 
 
 

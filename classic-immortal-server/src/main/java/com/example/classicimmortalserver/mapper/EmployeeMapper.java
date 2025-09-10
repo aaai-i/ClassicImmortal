@@ -24,6 +24,11 @@ public interface EmployeeMapper {
     void insert(Employee employee);
 
 
+
+    @Select("select * from `classic_immortal`.employee where no=#{no}")
+    Employee selectByNo(Integer no);
+
+
     /**
      * 修改散修
      * @param employee
@@ -31,8 +36,13 @@ public interface EmployeeMapper {
 
     void updateById(Employee employee);
 
-@Delete("SELECT * FROM `classic_immortal`.employee where  id=#{id}")
+    /**
+     * 删除散修
+     * @param id
+     */
+    @Delete("delete  from `classic_immortal`.employee where  id=#{id}")
     void deleteById(Integer id);
+
 }
 
 

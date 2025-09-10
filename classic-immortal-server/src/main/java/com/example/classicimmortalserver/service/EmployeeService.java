@@ -58,7 +58,7 @@ public class EmployeeService {
       if(dbEmployee!=null){
           throw new CustomException("500","账号已存在，请更换别的账号");
       }
-      Employee dbEmployee1=employeeMapper.selectByUsername(username);
+      Employee dbEmployee1=employeeMapper.selectByNo(employee.getNo());
     if (dbEmployee1!=null){
         throw new CustomException("500","工号已存在，请注意");
     }
@@ -91,6 +91,16 @@ public class EmployeeService {
      */
     public void deleteById(Integer id) {
         employeeMapper.deleteById(id);
+    }
+
+    /**
+     * 批量删除散修
+     * @param ids
+     */
+    public void deleteBatch(List<Integer> ids) {
+        for (Integer id : ids) {
+            this.deleteById(id);
+        }
     }
 }
 

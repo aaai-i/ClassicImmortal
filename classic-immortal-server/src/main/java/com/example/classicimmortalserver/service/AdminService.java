@@ -64,10 +64,7 @@ public class AdminService {
         if(dbAdmin!=null){
             throw new CustomException("500","账号已存在");
         }
-        Admin dbAdmin1=adminMapper.selectByUsername(username);
-        if (dbAdmin1!=null){
-            throw new CustomException("500","工号已存在");
-        }
+
         if (StrUtil.isBlank(admin.getPassword())){
 admin.setPassword("123");
         }
@@ -92,6 +89,16 @@ admin.setPassword("123");
      */
     public void deleteById(Integer id) {
         adminMapper.deleteById(id);
+    }
+
+    /**
+     * 批量删除散修
+     * @param ids
+     */
+    public void deleteBatch(List<Integer> ids) {
+        for (Integer id : ids) {
+            this.deleteById(id);
+        }
     }
 }
 

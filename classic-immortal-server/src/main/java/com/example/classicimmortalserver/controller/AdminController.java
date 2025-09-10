@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Admin")
 public class AdminController {
@@ -66,6 +68,16 @@ public Result delete(@PathVariable Integer id){
         return  Result.success();
 }
 
+    /**
+     * 批量删除散修
+     * @param ids
+     * @return
+     */
+    @DeleteMapping("/deleteBatch")
+public Result deleteBatch(@RequestBody List<Integer> ids){
+        adminService.deleteBatch(ids);
+        return Result.success();
+}
 
 
 

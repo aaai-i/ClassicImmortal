@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -70,6 +72,19 @@ public Result delete(@PathVariable Integer id){
         employeeService.deleteById(id);
         return Result.success();
 }
+
+    /**
+     * 批量删除散修
+     * @param ids
+     * @return
+     */
+    @DeleteMapping("/deleteBatch")
+public Result deleteBatch(@RequestBody List<Integer> ids){
+
+        employeeService.deleteBatch(ids);
+        return Result.success();
+}
+
 
 }
 
