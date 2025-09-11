@@ -21,20 +21,13 @@
 </el-form-item>
 
 
-
- <el-form-item>
-<el-button @click="login" size="large" style="width: 100%; " type="primary">
-登录
-</el-button>
- </el-form-item>
-
-
-
+ <div>
+<el-button @click="login" size="large" style="width: 100%; " type="primary">登录</el-button>
+</div>
+<div style="text-align: right;">还没有账号？请<a href="/register">注册</a></div>
 </el-form>
 
-
             </div>
-
         </div>
     </div>
 </template>

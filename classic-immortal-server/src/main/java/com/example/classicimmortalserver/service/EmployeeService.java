@@ -102,6 +102,28 @@ public class EmployeeService {
             this.deleteById(id);
         }
     }
+
+    /**
+     * 注册
+     * @param employee
+     */
+    public void register(Employee employee) {
+        this.add(employee);
+    }
+
+    public void updatePassword(Account account) {
+        Integer id = account.getId();
+        Employee employee=this.selectById(id);
+        if(!employee.getPassword().equals(account.getPassword())){
+            throw new CustomException("500","对不起,原密码错误");
+        }
+        employee.setPassword(account.getPassword());
+        this.update(employee);
+    }
+
+    public Employee selectById(Integer id) {
+       return employeeMapper.selectById(id);
+    }
 }
 
 

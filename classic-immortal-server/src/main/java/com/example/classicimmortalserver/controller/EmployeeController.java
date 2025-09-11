@@ -86,6 +86,14 @@ public Result deleteBatch(@RequestBody List<Integer> ids){
 }
 
 
+    @GetMapping("/selectById/{id}")
+    public Result selectById(@PathVariable  Integer id){
+        Employee employee= employeeService.selectById(id);
+        return Result.success(employee);
+    }
+
+
+
 }
 
 

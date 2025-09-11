@@ -19,4 +19,40 @@ public interface AdminMapper {
 
     @Delete("delete from `classic_immortal`.admin where id=#{id}")
     void deleteById(Integer id);
+
+    @Select("select * from `classic_immortal`.admin where  id=#{id}")
+    Admin selectById(Integer id);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

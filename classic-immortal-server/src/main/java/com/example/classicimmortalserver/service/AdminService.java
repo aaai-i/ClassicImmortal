@@ -100,6 +100,20 @@ admin.setPassword("123");
             this.deleteById(id);
         }
     }
+
+    public void updatePassword(Account account) {
+        Integer id = account.getId();
+        Admin admin=this.selectById(id);
+        if (!admin.getPassword().equals(account.getPassword())){
+            throw new CustomException("500","对不起,原密码错误");
+        }
+        admin.setPassword(account.getPassword());
+        this.update(admin);
+    }
+
+    public Admin selectById(Integer id) {
+return  adminMapper.selectById(id);
+    }
 }
 
 

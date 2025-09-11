@@ -79,11 +79,11 @@ public Result deleteBatch(@RequestBody List<Integer> ids){
         return Result.success();
 }
 
-
-
-
-
-
+    @GetMapping("/selectById/{id}")
+    public Result selectById(@PathVariable  Integer id) {
+        Admin admin = adminService.selectById(id);
+        return Result.success(admin);
+    }
 
 
 

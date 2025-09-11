@@ -43,6 +43,9 @@ public interface EmployeeMapper {
     @Delete("delete  from `classic_immortal`.employee where  id=#{id}")
     void deleteById(Integer id);
 
+
+    @Select("select  * from `classic_immortal`.employee where  id=#{id}")
+    Employee selectById(Integer id);
 }
 
 
