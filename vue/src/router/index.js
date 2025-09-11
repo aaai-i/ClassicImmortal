@@ -7,7 +7,8 @@ const router = createRouter({
     { path: '/',  redirect:'/login' },
     {path: '/manager',  name: 'Manager',  component: () => import('../views/Manager.vue'),children:[
          {path: 'home', name: 'home',meta:{title:'主页'}, component: () => import('../views/Home.vue'), },
-         {path: 'Employee', name: 'employee',meta:{title:'员工信息页面'}, component: () => import('../views/Employee.vue'), },
+         {path: 'employee', name: 'employee',meta:{title:'员工信息页面'}, component: () => import('../views/Employee.vue'), },
+          {path: 'admin', name: 'admin',meta:{title:'管理员息页面'}, component: () => import('../views/Admin.vue'), },
         {path: 'data', name: 'data',meta:{title:'数据展示页面'}, component: () => import('../views/Data.vue'), },
          
     ] },

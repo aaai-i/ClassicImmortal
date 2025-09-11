@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Admin")
+@RequestMapping("/admin")
 public class AdminController {
 
 
@@ -51,7 +51,7 @@ public class AdminController {
      * @param admin
      * @return
      */
-    @GetMapping("/update")
+    @PutMapping("/update")
 public Result update(@RequestBody Admin admin){
         adminService.update(admin);
         return Result.success();
