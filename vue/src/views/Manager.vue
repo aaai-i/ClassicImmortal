@@ -9,7 +9,7 @@
   </div>
       <div style="flex: 1"></div>
       <div style="width: fit-content; display: flex; align-items: center; padding-right: 10px">
-        <img src="@/assets/avatarone.jpg" alt="" style="width: 40px; height: 40px">
+        <img :src="data.user.avatar||'@/assets/avatarone.jpg' " alt="" style="width: 40px; height: 40px">
         <span style="color: white; margin-left: 5px">{{data.user.name}}</span>
   </div>
 </div>

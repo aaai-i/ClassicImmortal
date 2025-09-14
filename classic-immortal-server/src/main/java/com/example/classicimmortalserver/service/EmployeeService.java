@@ -117,7 +117,7 @@ public class EmployeeService {
         if(!employee.getPassword().equals(account.getPassword())){
             throw new CustomException("500","对不起,原密码错误");
         }
-        employee.setPassword(account.getPassword());
+        employee.setPassword(account.getNewPassword());
         this.update(employee);
     }
 

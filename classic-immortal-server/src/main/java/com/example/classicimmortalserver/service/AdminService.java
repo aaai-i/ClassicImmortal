@@ -107,7 +107,7 @@ admin.setPassword("123");
         if (!admin.getPassword().equals(account.getPassword())){
             throw new CustomException("500","对不起,原密码错误");
         }
-        admin.setPassword(account.getPassword());
+        admin.setPassword(account.getNewPassword());
         this.update(admin);
     }
 

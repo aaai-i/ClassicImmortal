@@ -3,6 +3,7 @@ package com.example.classicimmortalserver.controller;
 import com.example.classicimmortalserver.common.Result;
 import com.example.classicimmortalserver.entity.Account;
 import com.example.classicimmortalserver.entity.Employee;
+import com.example.classicimmortalserver.exception.CustomException;
 import com.example.classicimmortalserver.service.AdminService;
 import com.example.classicimmortalserver.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,8 @@ public Result updatePassword(@RequestBody Account account){
             adminService.updatePassword(account);
         } else if ("EMP".equals(account.getRole())) {
             employeeService.updatePassword(account);
+        }else{
+            throw new CustomException("500","非法输入");
         }
         return Result.success();
 }

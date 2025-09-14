@@ -17,6 +17,11 @@
     <el-table :data="data.tableData" stripe  @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" />
     <el-table-column label="账号" prop="username" />
+    <el-table-column label="头像">
+  <template #default="scope">
+    <img  v-if="scope.row.avatar" :src="scope.row.avatar" alt="" style="display: block; width: 40px; height: 40px; border-radius: 50%" />
+  </template>
+</el-table-column>
     <el-table-column label="名称" prop="name" />
     <el-table-column label="性别" prop="sex"/>
     <el-table-column label="工号" prop="no" />
@@ -49,8 +54,23 @@
       <el-dialog title="员工信息" v-model="data.formVisible" width="500" destroy-on-close>
   <el-form ref="formRef" :rules="data.rules" :model="data.form" label-width="80px" style="padding-right: 40px; padding-top: 20px">
     <el-form-item label="账号" prop="username">
-      <el-input  v-model="data.form.username" autocomplete="off" placeholder="请输入账号" />
+      <el-input :disabled="data.form.id" v-model="data.form.username" autocomplete="off" placeholder="请输入账号" />
     </el-form-item>
+
+    <el-form-item>
+     <el-form-item label="头像">
+  <el-upload
+      class="avatar-uploader"
+      action="http://localhost:9091/files/upload"
+      list-type="piecture"
+      :on-success="handleAvatarSuccess"
+  >
+  
+  <el-button type="primary">上传头像</el-button>
+  </el-upload>
+</el-form-item>
+</el-form-item>
+
     <el-form-item label="名称" prop="name">
       <el-input v-model="data.form.name"  autocomplete="off" placeholder="请输入名称" />
     </el-form-item>
@@ -229,19 +249,27 @@ const delBatch=()=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+// res在里面意味着拿到后端返回的结果
+const handleAvatarSuccess=(res)=>{
+console.log(res.data)
+data.form.avatar=res.data
+}
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,9 +1,21 @@
 <template>
-   
-
         <div>
-     
   <el-form ref="formRef" :rules="data.rules" :model="data.form" label-width="80px" style="padding-right: 40px; padding-top: 20px">
+
+  <el-form-item label="头像">
+  <el-upload
+      class="avatar-uploader"
+      action="http://localhost:9091/files/upload"
+      :show-file-list="false"
+      :on-success="handleAvatarSuccess"
+  >
+    <img v-if="data.form.avatar" :src="data.form.avatar" class="avatar" />
+    <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+  </el-upload>
+</el-form-item>
+
+
+    
     <el-form-item label="账号" prop="username">
       <el-input  v-model="data.form.username" autocomplete="off" placeholder="请输入账号" />
     </el-form-item>
@@ -57,6 +69,7 @@ const emit=defineEmits(['updateUser'])
 
 if(data.user.role==='EMP'){
     request.get('/employee/selectById/'+data.user.id).then(res=>{
+        
         data.form=data.user
     })
 }else{
@@ -91,4 +104,42 @@ const updateUser = () => {
     })
   }
 }
+
+// res在里面意味着拿到后端返回的结果
+const handleAvatarSuccess=(res)=>{
+console.log(res.data)
+data.form.avatar=res.data
+}
 </script>
+
+
+<style scoped>
+.avatar-uploader .avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+</style>
+
+<style>
+.avatar-uploader .el-upload {
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--el-transition-duration-fast);
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: var(--el-color-primary);
+}
+
+.el-icon.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  text-align: center;
+}
+</style>
