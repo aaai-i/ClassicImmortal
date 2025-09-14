@@ -25,8 +25,8 @@
     <el-menu-item index="/manager/employee">员工信息</el-menu-item>
 </el-sub-menu>
 
- <el-menu-item > <el-icon><Lock /></el-icon>个人信息</el-menu-item>
- <el-menu-item ><el-icon><UserFilled /></el-icon>修改密码</el-menu-item>
+ <el-menu-item  index="/manager/person"> <el-icon><Lock /></el-icon>个人信息</el-menu-item>
+ <el-menu-item index="/manager/password"><el-icon><UserFilled /></el-icon>修改密码</el-menu-item>
 <el-menu-item @click="logout"> <el-icon><SwitchButton /></el-icon> 退出登录 </el-menu-item>
 </el-menu>
 </div>
