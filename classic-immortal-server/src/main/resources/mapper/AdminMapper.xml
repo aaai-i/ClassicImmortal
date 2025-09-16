@@ -18,7 +18,7 @@ order by id desc
 
 
     <insert id="insert">
-       insert into `classic_immortal`.admin (id, username, password, name,avatar)
+       insert into `classic_immortal`.admin ( username, password,role, name,avatar)
        values (#{id},#{username},#{password},#{name},#{avatar})
 
     </insert>

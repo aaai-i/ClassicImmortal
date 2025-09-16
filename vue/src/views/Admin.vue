@@ -61,9 +61,7 @@
   </el-upload>
 </el-form-item>
 
-const handleAvatarSuccess = (res) => {
-  data.form.avatar = res.data
-}
+
     <el-form-item label="名称" prop="name">
       <el-input v-model="data.form.name"  autocomplete="off" placeholder="请输入名称" />
     </el-form-item>

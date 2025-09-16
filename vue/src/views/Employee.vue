@@ -29,8 +29,8 @@
     <el-table-column label="个人介绍" prop="description" />
     <el-table-column label="操作">
     <template #default="scope">
-    <el-button type="primary" @click="handleUpdate(scope.row)">编辑</el-button>
-    <el-button type="danger" @click="del(scope.row.id)" >删除</el-button>
+    <el-button type="primary" circle @click="handleUpdate(scope.row)"><el-icon><Edit/></el-icon></el-button>
+    <el-button type="danger" circle @click="del(scope.row.id)" >删除</el-button>
     </template>   
     </el-table-column>
 </el-table>
@@ -59,10 +59,9 @@
 
     <el-form-item>
      <el-form-item label="头像">
-  <el-upload
-      class="avatar-uploader"
+   <el-upload
       action="http://localhost:9091/files/upload"
-      list-type="piecture"
+      list-type="picture"
       :on-success="handleAvatarSuccess"
   >
   
