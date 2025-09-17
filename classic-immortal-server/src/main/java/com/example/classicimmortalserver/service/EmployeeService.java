@@ -124,6 +124,14 @@ public class EmployeeService {
     public Employee selectById(Integer id) {
        return employeeMapper.selectById(id);
     }
+
+
+
+    public List<Employee> selectAll(Employee employee) {
+        List<Employee> list=employeeMapper.selectAll(employee);
+        return list;
+    }
+
 }
 
 

@@ -5,21 +5,20 @@
 <mapper namespace="com.example.classicimmortalserver.mapper.EmployeeMapper">
 
 
-
     <select id="selectAll" resultType="com.example.classicimmortalserver.entity.Employee">
-        SELECT * FROM  `classic_immortal`.employee
+        select employee.*, department.name as departmentName from employee
+        left join department on employee.department_id = department.id
         <where>
-            <if test="name!=null"> name like concat('%',#{name},'%')</if>
+            <if test="name != null">employee.name like concat('%', #{name}, '%')</if>
         </where>
-order by id desc
-
+        order by employee.id desc
     </select>
 
 
 
     <insert id="insert">
-insert into   `classic_immortal`.employee  (username,password,role,name,sex,no,age,description,avatar)
-values (#{username},#{password},#{role},#{name},#{sex},#{no,},#{age},#{description},#{avatar})
+insert into   `classic_immortal`.employee  (username,password,role,name,sex,no,age,description,department_id,avatar)
+values (#{username},#{password},#{role},#{name},#{sex},#{no,},#{age},#{description},#{departmentId},#{avatar})
     </insert>
 
 
@@ -27,7 +26,7 @@ values (#{username},#{password},#{role},#{name},#{sex},#{no,},#{age},#{descripti
 
     <update id="updateById" parameterType="com.example.classicimmortalserver.entity.Employee">
 update `classic_immortal`.employee set username=#{username},password=#{password},role=#{role},
-                                       name=#{name},sex=#{sex},no=#{no},age=#{age},description=#{description},avatar=#{avatar}
+                                       name=#{name},sex=#{sex},no=#{no},age=#{age},description=#{description},department_id=#{departmentId},avatar=#{avatar}
 
 where id=#{id}
     </update>

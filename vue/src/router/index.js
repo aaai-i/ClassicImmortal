@@ -12,7 +12,8 @@ const router = createRouter({
         {path: 'data', name: 'Data',meta:{title:'数据展示页面'}, component: () => import('../views/Data.vue')},
         {path:'person',name:'Person',meta:{title:'个人信息'},component:()=>import('../views/Person.vue')},
         {path:'password',name:'Password',meta:{title:'修改密码'},component:()=>import('../views/Password.vue')},
-        {path:'article',name:'Article',meta:{title:'修改密码'},component:()=>import('../views/Article.vue')},
+        {path:'article',name:'Article',meta:{title:'文章信息'},component:()=>import('../views/Article.vue')},
+        {path:'department',name:'Department',meta:{title:'部门信息'},component:()=>import('../views/Department.vue')}
          
     ] },
     {path:'/login',name:'Login',meta:{title:'登录系统'},component:()=>import('../views/Login.vue')},

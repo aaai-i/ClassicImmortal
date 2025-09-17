@@ -10,6 +10,24 @@ public class Employee extends  Account{
     private Integer no;
     private Integer age;
     private String description;
+   private  Integer departmentId;
+   private String departmentName;
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+    }
 
     public Integer getId() {
         return id;

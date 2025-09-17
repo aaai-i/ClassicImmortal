@@ -20,6 +20,7 @@
 <el-menu-item index="/manager/home"><el-icon><House/></el-icon>系统首页</el-menu-item>
 <el-menu-item > <el-icon><DataAnalysis /></el-icon> 数据统计</el-menu-item>
 <el-menu-item  index="/manager/article">  文章管理</el-menu-item>
+<el-menu-item  index="/manager/department">  部门管理</el-menu-item>
 <el-sub-menu index="1">
     <template #title> <el-icon><User/></el-icon> <span>用户管理</span></template>
      <el-menu-item  index="/manager/admin">管理员信息</el-menu-item>

@@ -87,6 +87,15 @@ public Result deleteBatch(@RequestBody List<Integer> ids){
 
 
 
+    /**
+     * 查询所有的数据
+     * @return
+     */
+    @GetMapping("/selectAll")
+    public Result selectAll(Admin admin){
+        List<Admin> list=adminService.selectAll( admin);
+        return Result.success(list);
+    }
 
 
 

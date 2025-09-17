@@ -114,7 +114,16 @@ admin.setPassword("123");
     public Admin selectById(Integer id) {
 return  adminMapper.selectById(id);
     }
+
+
+    public List<Admin> selectAll(Admin admin) {
+        List<Admin> list=adminMapper.selectAll(admin);
+        return list;
+    }
+
+
 }
+
 
 
 

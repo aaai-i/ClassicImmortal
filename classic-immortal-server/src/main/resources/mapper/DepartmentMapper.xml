@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.classicimmortalserver.mapper.DepartmentMapper">
+
+
+
+    <select id="selectAll" resultType="com.example.classicimmortalserver.entity.Department">
+        SELECT * FROM  `classic_immortal`.department
+        <where>
+            <if test="name!=null"> name like concat('%',#{name},'%')</if>
+        </where>
+order by id desc
+
+    </select>
+
+
+
+    <insert id="insert">
+insert into   `classic_immortal`.department  (name)
+values (#{name})
+    </insert>
+
+
+
+
+    <update id="updateById" parameterType="com.example.classicimmortalserver.entity.Department">
+update `classic_immortal`.department set name=#{name}
+
+where id=#{id}
+    </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
